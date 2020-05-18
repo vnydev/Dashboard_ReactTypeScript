@@ -4,7 +4,7 @@ const path = require('path'),
 
 module.exports = {
     entry: {
-        app: ['./src/main.tsx', 'webpack-hot-middleware/client'],
+        app: ['./src/main.tsx'],
         vendor: ['react', 'react-dom']
     },
     output: {
@@ -17,9 +17,23 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.(ts|tsx)$/,
-                loader: 'ts-loader'
+            { test: /\.(ts|tsx)$/, loader: 'ts-loader', },
+            { test: /\.s[ac]ss$/i, use: [
+                // Compiles Sass to CSS
+                'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                      sourceMap: true,
+                    },
+                  },
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      sourceMap: true,
+                    },
+                },
+              ], 
             },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]

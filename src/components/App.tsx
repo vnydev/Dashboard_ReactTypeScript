@@ -1,12 +1,16 @@
 import  * as React from 'react';
+import {Layout} from 'antd';
+import {Routes} from './routes';
+import './styles.scss';
 
-
-export interface AppInterface { name: string;  };
-
-export class AppComponent extends React.Component<AppInterface, {}>{
+export class AppComponent extends React.Component{
     
     render(){
-        return <div> APP Component {this.props.name} </div>
+        return (
+            <Layout>
+                {Routes}
+            </Layout>
+        )
     }
 
 }
